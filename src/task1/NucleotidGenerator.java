@@ -22,6 +22,16 @@ public class NucleotidGenerator {
             System.out.println("Ошибка ввода. Введите длину ДНК цепочки, от 100 до 1000:");
             inputLength = scanner.nextLine();
         }
+        length = Integer.parseInt(inputLength);
+        if (length < 100 || length > 1000) {
+            System.out.println("Длина не соответствует условиям. Введите длину ДНК цепочки, от 100 до 1000:");
+            inputLength = scanner.nextLine();
+        }
+        while (!(inputLength.matches("[0-9]+"))) {
+            System.out.println("Ошибка ввода. Введите длину ДНК цепочки, от 100 до 1000:");
+            inputLength = scanner.nextLine();
+        }
+        length = Integer.parseInt(inputLength);
         System.out.println("Введите ГЦ состав в %, от 20% до 80%, без знака %");
         String inputGC = scanner.nextLine();
         while (!(inputGC.matches("[0-9]+"))) {
@@ -29,15 +39,11 @@ public class NucleotidGenerator {
             inputGC = scanner.nextLine();
         }
         gc = Integer.parseInt(inputGC);
-        if (gc < 20 || gc > 80) {
+        while (gc < 20 || gc > 80) {
             System.out.println("ГЦ состав " + gc + " не соответствует условиям. Введите ГЦ состав в %, от 20% до 80%, без знака %");
             gc = scanner.nextInt();
         }
-        length = Integer.parseInt(inputLength);
-        if (length < 100 || length > 1000) {
-            System.out.println("Длина " + length + " не соответствует условиям. Введите длину ДНК цепочки, от 100 до 1000:");
-            length = scanner.nextInt();
-        }
+
         String generatedChain = generate();
         String relatedChain = findRelatedChain(generatedChain);
 

@@ -16,6 +16,7 @@ public class ORFFinder {
     private static ArrayList<String> allOrf = new ArrayList<>();
     private static boolean isEmpty = true;
     private static HashMap<String, String> hashMap = new HashMap<>();
+    private static String maxBelok = "";
 
     public static void findOrf() {
         int startOrf = -1;
@@ -55,6 +56,7 @@ public class ORFFinder {
                         maxLenOrf = orfStr.length();
                         maxOrf = orfStr;
                         isStrengthMax = getCurrentChain();
+                        maxBelok = getProtein(orfStr);
                     }
                     startOrf = -1;
                     stopOrf = -1;
@@ -70,7 +72,7 @@ public class ORFFinder {
             //System.out.println("Все ОРФ: " + splitByOrf(splitStringInList(allOrf)).toString());
             splitByOrf(splitStringInList(allOrf));
             System.out.println("Макс орф: " + splitString(maxOrf) + "\nДлина: " + maxLenOrf + "\nНа цепочке: " + isStrengthMax);
-            System.out.println("Оттранслированный: " + splitString(findRelatedChain(maxOrf)));
+            System.out.println("Оттранслированный: " + maxBelok);
 
         }
     }
